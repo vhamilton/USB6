@@ -1,0 +1,18 @@
+python -m venv venv
+
+pip install flask
+
+pip install -r requirements.txt
+
+
+pip install requests
+
+pip install flask_migrate
+
+pip install crowdstrike-falconpy
+
+pip install Pillow
+
+
+python app.py
+

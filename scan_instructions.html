@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USB Hub - Scan Instructions</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+        .instruction-card {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        .instruction-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .collapsible {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+        .active, .collapsible:hover {
+            background-color: #0056b3;
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+            text-align: left;
+        }
+        .content img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+        #checkDetectionsBtn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        #checkDetectionsBtn:hover {
+            background-color: #218838;
+        }
+        #detectionResult {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo-EHJjP9l3iyfjk5H9xnciHvxks1QLCB.jpg" alt="USB Hub Logo" class="logo">
+            <div class="logo-text">USB Hub</div>
+        </div>
+
+        <div class="instruction-card">
+            <p class="instruction-text">
+                Please plug in your USB device into the machine and it will be automatically scanned by CrowdStrike.
+            </p>
+
+            <button type="button" class="collapsible">USB Scan Instructions</button>
+            <div class="content">
+                <h2>How to Run an On-Demand Scan with CrowdStrike</h2>
+                
+                <p><strong>Last updated: Apr 20, 2023 by Vincent Hamilton</strong></p>
+
+                <p>CrowdStrike is a Next Generation AntiVirus (NGAV) that relies more on analyzing behaviors than it does on scanning files, but you can still use it to run manual scans on your computer for peace of mind. You can use the On-Demand Scan feature to scan your system drive, other drives attached to your computer, or just files on your computer that you think are suspicious or might contain malicious code.</p>
+
+                <p><strong>On-Demand Scanning with CrowdStrike is only available on Windows for now.</strong></p>
+
+                <p>Support for On-Demand Scanning in macOS is coming. In the meantime, CrowdStrike is still protecting your Mac computer and will block malicious files from running in real time. On-demand scanning just enables you to scan a file before executing it. It's not necessary to do that with Next Generation AntiVirus, but CrowdStrike supports it as a peace of mind feature on Windows and will support it soon for macOS.</p>
+
+                <p><strong>When running an On-Demand Scan, CrowdStrike will only alert you if it detects something! It is normal to not get any feedback if the scan turns up clean!</strong></p>
+
+                <h3>Scanning Drives in Windows</h3>
+
+                <p><strong>Be aware that scanning a large drive full of files could take a long time! CrowdStrike is very efficient with its scans, only looking at files that could potentially execute code, but you should still be prepared to give it some time.</strong></p>
+
+                <p>You can scan any drive attached to your computer by right-clicking it in File Explorer and selecting the Scan option from the CrowdStrike Falcon menu. See Picture 1 below.</p>
+
+                <img src="{{ url_for('static', filename='images/image1.png') }}" alt="Scanning drives in Windows">
+
+                <p>You can also find convenient drive scan options in the CrowdStrike menu from right-clicking on your Desktop. You can scan all drives, scan just your system drive (usually C: on Windows), or see the results of your last scan. Using the "see results of last scan" option is usually unnecessary since CrowdStrike will alert you to anything it finds when you run a scan. No news is good news, but you're welcome to use the "see results of last scan" option if you want confirmation that the scan completed. See Image 2 Below.</p>
+
+                <img src="{{ url_for('static', filename='images/image2.png') }}" alt="CrowdStrike menu options">
+
+                <h3>Scanning Files and Folders in Windows</h3>
+
+                <p>You can easily scan individual files or folders by selecting a single file or folder in File Explorer or on your Desktop, then right-clicking it to bring up the right-click menu. From there, select CrowdStrike Falcon and then click Scan.</p>
+
+                <img src="{{ url_for('static', filename='images/image3.png') }}" alt="Scanning files and folders">
+
+                <p><strong>Currently this doesn't work for multiple files or folders selected at the same time!</strong> If you need to scan multiple files or folders, either put them all into one folder and scan that folder, or scan the entire parent folder that contains all the files and folders you want to scan.</p>
+
+                <h3>What to Do If CrowdStrike Detects Malware</h3>
+
+                <p>If CrowdStrike detects something malicious on your computer, don't panic. It's good that you caught it "at rest" before it could execute and potentially harm your computer. CrowdStrike will automatically report any detections to the Information Security Manager for review, but we also encourage you to email infosec@sou.edu with additional details you can provide for context. For example, if CrowdStrike detects a malicious executable in your Downloads folder, do you remember where you downloaded it from and when?</p>
+
+                <h3>What to Do If CrowdStrike Doesn't Show Anything</h3>
+
+                <p>No news is good news when it comes to On-Demand Scanning with CrowdStrike. Ideally, you run the scan and nothing happens. If you want to confirm that the scan actually executed, you're welcome to use the "see results of last scan" option which you can access from your Desktop. Just right-click anywhere on your Desktop, go to the CrowdStrike Falcon menu, and then click on the "See results of last scan" submenu option.</p>
+
+                <img src="{{ url_for('static', filename='images/image4.png') }}" alt="CrowdStrike 'See results of last scan' option">
+
+                <p>You should then see a black terminal window pop up on your screen with details of the scan. It's normal to see many "unsupported files" in the tally because CrowdStrike doesn't waste time scanning files that are incapable of running code on your computer, such as image files. You should see zero suspicious files in the tally, otherwise CrowdStrike would have alerted you.</p>
+
+                <img src="{{ url_for('static', filename='images/image5.png') }}" alt="CrowdStrike scan results">
+            </div>
+
+            <p class="instruction-text">
+                Hostname: {{ hostname }}
+            </p>
+            <button id="checkDetectionsBtn">Check Detections</button>
+            <div id="detectionResult"></div>
+        </div>
+    </div>
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+
+        document.getElementById('checkDetectionsBtn').addEventListener('click', function() {
+            var resultDiv = document.getElementById('detectionResult');
+            
+            resultDiv.textContent = 'Checking detections...';
+            
+            fetch('/check-detections', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    resultDiv.textContent = 'Error: ' + data.error;
+                } else {
+                    resultDiv.textContent = 'Detections found: ' + (data.has_detections ? 'True' : 'False');
+                }
+            })
+            .catch(error => {
+                resultDiv.textContent = 'Error: ' + error.message;
+            });
+        });
+
+        // Screenshot functionality
+        let screenshotCount = 0;
+        const maxScreenshots = 120; // 2 minutes * 60 seconds
+
+        function captureAndUploadScreenshot() {
+            html2canvas(document.body).then(canvas => {
+                const image = canvas.toDataURL("image/png");
+                fetch('/save-screenshot', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ image: image }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Screenshot saved:', data.filename);
+                    screenshotCount++;
+                    if (screenshotCount < maxScreenshots) {
+                        setTimeout(captureAndUploadScreenshot, 1000);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            });
+        }
+
+        // Start capturing screenshots when the page loads
+        window.onload = function() {
+            captureAndUploadScreenshot();
+        };
+    </script>
+</body>
+</html>
